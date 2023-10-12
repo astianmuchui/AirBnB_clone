@@ -1,32 +1,32 @@
 #!/usr/bin/python3
 
 import unittest
-from models.engine import Filestorage
-import json
-import dumps, loads
+from models.engine import file_storage
+
+from json import dumps, loads
 
 
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def all(self):
+    def test_all(self):
         """all method"""
         return FileStorage.__objects
 
-    def new(self, obj):
+    def test_new(self, obj):
         """new method"""
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             FileStorage.__objects[key] = obj
 
-    def save(self):
+    def test_save(self):
         """save method"""
         with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
             d = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
             json.dump(d, f)
 
-    def reload(self):
+    def test_reload(self):
         """serialize"""
         try:
             with open(self.__file_path, 'r', encoding="UTF-8") as f:
