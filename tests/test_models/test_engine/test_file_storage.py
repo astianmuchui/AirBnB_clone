@@ -6,6 +6,7 @@ from models.engine import file_storage
 from json import dumps, loads
 
 class FileStorage(unittest.TestCase):
+
     __file_path = "file.json"
     __objects = {}
 
