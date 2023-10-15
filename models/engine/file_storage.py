@@ -4,6 +4,7 @@ import os
 from models.user import User
 from models.base_model import BaseModel
 
+
 class FileStorage:
 
     def __init__(self):
@@ -37,10 +38,10 @@ class FileStorage:
             # 'Review': Review,
             'User': User
         }
-        if os.path.exists(self.__file_path) and os.path.getsize(self.__file_path) > 0:
+        if os.path.exists(self.__file_path) and
+        os.path.getsize(self.__file_path) > 0:
             with open(self.__file_path, "r") as file:
                 self.__objects = json.load(file)
         else:
             pass
     pass
-
