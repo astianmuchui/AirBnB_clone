@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
 import uuid
+import models
 from datetime import datetime
 
-class BaseModel():
+class BaseModel:
 
     """
         This is the base model for the HBNB Project
@@ -29,17 +30,15 @@ class BaseModel():
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
     pass
 
+    def to_dict(self):
+        new = self.__dict__.copy()
+        new["__class__"] = self.__class__.__name__
+        new["created_at"] = self.created_at.isoformat()
+        new["updated_at"] = self.updated_at.isoformat()
+        return new
+    pass
 
     def save(self):
         self.updated_at = (datetime.now())
-    pass
-
-
-    def to_dict(self):
-        self.created_at = datetime.isoformat(self.created_at)
-        self.updated_at = datetime.isoformat(self.updated_at)
-        temp = self.__dict__.copy()
-        temp["__class__"] = self.__class__.__name__
-
-        return dict(temp)
+        models.storage.save()
     pass
