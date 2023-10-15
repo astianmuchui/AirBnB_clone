@@ -4,6 +4,7 @@ import uuid
 import models
 from datetime import datetime
 
+
 class BaseModel:
 
     """
@@ -21,13 +22,15 @@ class BaseModel:
 
             for key in keys:
                 if key == "created_at" or key == "updated_at":
-                    kwargs[key] = str(datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                    kwargs[key] = str
+                    (datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f"))
                 if key != "__class__":
                     setattr(self, key, kwargs[key])
     pass
 
     def __str__(self):
-        return ("[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__))
+        return ("[{}] ({}) {}".format
+                (self.__class__.__name__, self.id, self.__dict__))
     pass
 
     def to_dict(self):
