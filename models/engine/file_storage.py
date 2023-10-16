@@ -4,16 +4,13 @@ import os
 from models.user import User
 from models.base_model import BaseModel
 
-
 class FileStorage:
 
-    def __init__(self):
-        self.__file_path = "file.json"
-        self.__objects = {}
-    pass
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
-        return self.__objects
+        return FileStorage.__objects
     pass
 
     def new(self, obj):
@@ -21,7 +18,7 @@ class FileStorage:
     pass
 
     def save(self):
-        new = {k: v.to_dict() for k, v in self.__objects.items()}
+        new = {key: value for key, value in self.__objects.items()}
 
         with open(self.__file_path, "w") as f:
             json.dump(new, f)
@@ -29,19 +26,10 @@ class FileStorage:
 
     def reload(self):
 
-        objects = {
-            'BaseModel': BaseModel,
-            # 'State': State,
-            # 'City': City,
-            # 'Amenity': Amenity,
-            # 'Place': Place,
-            # 'Review': Review,
-            'User': User
-        }
-        if os.path.exists(self.__file_path) and
-        os.path.getsize(self.__file_path) > 0:
-            with open(self.__file_path, "r") as file:
-                self.__objects = json.load(file)
-        else:
-            pass
+        if os.path.isfile(self.__file_path):
+            with open(self.__file_path, "r") as f:
+                new = json.load(f)
+                for key, value in new.items():
+                    self.__objects[key] = eval(value["__class__"])(**value)
     pass
+

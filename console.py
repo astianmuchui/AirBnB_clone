@@ -6,11 +6,9 @@ import cmd
 from models.base_model import BaseModel
 from models.user import User
 
-
 class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
-
     def do_quit(self, arg):
         """Quit command to exit the commandline"""
         return True
@@ -35,8 +33,7 @@ class HBNBCommand(cmd.Cmd):
             print(new.id)
 
     def do_show(self, arg):
-        """Prints the string representation
-        of an instance based on the class name and id"""
+        """Prints the string representation of an instance based on the class name and id"""
         if not arg:
             print("** class name missing **")
         elif arg != "BaseModel":
@@ -44,7 +41,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** instance id missing **")
     pass
-
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
         if not arg:
@@ -54,10 +50,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** instance id missing **")
     pass
-
     def do_all(self, arg):
-        """Prints all string representation of all
-        instances based or not on the class name"""
+        """Prints all string representation of all instances based or not on the class name"""
         if not arg:
             print("** class name missing **")
         elif arg != "BaseModel":
@@ -65,10 +59,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** instance id missing **")
     pass
-
     def do_update(self, arg):
-        """Updates an instance based on the class name
-        and id by adding or updating attribute"""
+        """Updates an instance based on the class name and id by adding or updating attribute"""
         if not arg:
             print("** class name missing **")
         elif arg != "BaseModel":
@@ -76,7 +68,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** instance id missing **")
     pass
-
     def do_count(self, arg):
         """Retrieves the number of instances of a class"""
         if not arg:
@@ -87,7 +78,6 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
     pass
-
     def do_BaseModel(self, arg):
         """Retrieves an instance based on its ID"""
         if not arg:
