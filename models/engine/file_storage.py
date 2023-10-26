@@ -32,4 +32,3 @@ class FileStorage:
                 for key, value in new.items():
                     self.__objects[key] = eval(value["__class__"])(**value)
     pass
-
